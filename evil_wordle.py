@@ -2,7 +2,7 @@
 Student information for this assignment:
 
 Replace <FULL NAME> with your name.
-On my/our honor, Alex Lau and <FULL NAME>, this
+On my/our honor, Alex Lau and Victoria LI, this
 programming assignment is my own work and I have not provided this code to
 any other student.
 
@@ -13,14 +13,12 @@ code to someone else), the case shall be submitted to the Office of the Dean of
 Students. Academic penalties up to and including an F in the course are likely.
 
 UT EID 1: ayl578
-UT EID 2:
+UT EID 2: vfl229
 """
 
 import random
 import sys
 
-# You may delete this import if you choose not to use this.
-from collections import defaultdict
 
 # ANSI escape codes for text color
 # These must be used by wrapping it around a single character string
@@ -94,7 +92,7 @@ class Keyboard:
         for letter in guessed_word:
             if feedback_colors[i] == CORRECT_COLOR:
                 self.colors[letter] = CORRECT_COLOR
-            elif feedback_colors[i] == WRONG_SPOT_COLOR and self.colors[letter] != CORRECT_COLOR: 
+            elif feedback_colors[i] == WRONG_SPOT_COLOR and self.colors[letter] != CORRECT_COLOR:
                 self.colors[letter] = WRONG_SPOT_COLOR
             elif self.colors[letter] == NO_COLOR and feedback_colors[i] == NOT_IN_WORD_COLOR:
                 self.colors[letter] = NOT_IN_WORD_COLOR
@@ -186,9 +184,8 @@ class WordFamily:
                 self.difficulty += 2
             elif color == WRONG_SPOT_COLOR:
                 self.difficulty += 1
-        
 
-    # TODO: Modify this method. You may delete this comment when you are done.
+    
     def __lt__(self, other):
         """
         Compares this WordFamily object with another by prioritizing a larger
@@ -348,7 +345,6 @@ def prepare_game():
     return attempts, valid_words
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def fast_sort(lst):
     """
     Returns a new list with the same elements as lst sorted in ascending order. You MUST implement
@@ -390,7 +386,6 @@ def fast_sort(lst):
         k += 1
     return lst
 
-# TODO: Modify this helper function. You may delete this comment when you are done.
 def get_feedback_colors(secret_word, guessed_word):
     """
     Processes the guess and generates the colored feedback based on the potential secret word. This
@@ -414,7 +409,7 @@ def get_feedback_colors(secret_word, guessed_word):
         if secret_word[i] == guessed_word[i]:
             feedback[i] = CORRECT_COLOR
         else:
-            #adds to dict the number of instances of a secret letter that isnt green (sets 0 for default)
+            #adds dict the number of instances secret letter that isnt green (sets 0 for default)
             letter_cnt[secret_word[i]] = letter_cnt.get(secret_word[i], 0) + 1
 
     for i in range(NUM_LETTERS):
@@ -426,8 +421,6 @@ def get_feedback_colors(secret_word, guessed_word):
                 feedback[i] = NOT_IN_WORD_COLOR
     return feedback
 
-
-# TODO: Modify this function. You may delete this comment when you are done.
 def get_feedback(remaining_secret_words, guessed_word):
     """
     Processes the guess and generates the colored feedback based on the hardest word family. Use
@@ -455,13 +448,11 @@ def get_feedback(remaining_secret_words, guessed_word):
         #words of same family have same feedback
         if feedback_colors not in families:
             families[feedback_colors] = []
-        families[feedback_colors].append(word)
-    
+        families[feedback_colors].append(word)  
     families_lst = []
     for feedback_colors, words in families.items():
         families_lst.append(WordFamily(feedback_colors,words))
-    fast_sort(families_lst)
-    
+    fast_sort(families_lst) 
     return families_lst[0].feedback_colors, families_lst[0].words
 
 
