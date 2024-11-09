@@ -185,7 +185,6 @@ class WordFamily:
             elif color == WRONG_SPOT_COLOR:
                 self.difficulty += 1
 
-    
     def __lt__(self, other):
         """
         Compares this WordFamily object with another by prioritizing a larger
@@ -448,11 +447,11 @@ def get_feedback(remaining_secret_words, guessed_word):
         #words of same family have same feedback
         if feedback_colors not in families:
             families[feedback_colors] = []
-        families[feedback_colors].append(word)  
+        families[feedback_colors].append(word)
     families_lst = []
     for feedback_colors, words in families.items():
         families_lst.append(WordFamily(feedback_colors,words))
-    fast_sort(families_lst) 
+    fast_sort(families_lst)
     return families_lst[0].feedback_colors, families_lst[0].words
 
 
